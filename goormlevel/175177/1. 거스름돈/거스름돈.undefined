@@ -1,0 +1,22 @@
+// Run by Node.js
+const readline = require('readline');
+
+(async () => {
+	let rl = readline.createInterface({ input: process.stdin });
+	
+	for await (const line of rl) {
+		let money = Number(line.trim());
+		let coins = [40,20,10,5,1];
+		let result = 0
+		for(let i = 0; i<coins.length; i++){
+			let coin = coins[i];
+			result += Math.floor(money / coin);
+			money = money % coin
+		}
+		console.log(result)
+		// console.log('Hello Goorm! Your input is', line);
+		// rl.close();
+	}
+	
+	process.exit();
+})();
