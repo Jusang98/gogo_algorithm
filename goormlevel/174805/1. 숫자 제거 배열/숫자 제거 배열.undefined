@@ -1,0 +1,42 @@
+// Run by Node.js
+const readline = require('readline');
+
+(async () => {
+	let rl = readline.createInterface({ input: process.stdin });
+	//N개의 정수, K(숫자 문자열)이 있으면 배열에 넣지않는다.
+	// 둘째 줄에 a1~aN이 공백을 두고 주어짐 split(" ")
+	//모든 정수를 배열에 넣었을때 K 제외 정수의 갯수
+	let count = 0;
+	let k = 0;
+	let result = 0;
+	
+	for await (const line of rl) {
+		let cleanLine = line.trim();
+		if(!cleanLine)continue;
+		if(count ===0){
+			count++
+			let arr = cleanLine.split(/\s+/)
+			k = arr[1]
+			// console.log(k)
+		}else{
+			// console.log(k)
+			let a = cleanLine.split(/\s+/);
+			// console.log(a[0]);
+			for(let i = 0; i< a.length; i++){
+				if(!a[i].includes(k)){
+					result +=1
+				}
+			}
+			console.log(result)
+		}
+			// console.log(k)
+			// console.log(cleanLine.split(" "));
+			
+			// result = Number(cleanLine.split(" ").filter(n=> n.includes(k))).length;
+		
+		// console.log(result);
+		// rl.close();
+	}
+	
+	process.exit();
+})();
