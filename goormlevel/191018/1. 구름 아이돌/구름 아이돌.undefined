@@ -1,0 +1,31 @@
+// Run by Node.js
+const readline = require('readline');
+
+(async () => {
+	let rl = readline.createInterface({ input: process.stdin });
+	// 첫번째줄에 lenght, 두번째 줄에 공백을 기준으로 점수 출력은 indexOf
+	let count = 0
+	let len = 0;
+	let result = 0;
+	for await (const line of rl) {
+		let cleanLine = line.trim();
+		if(!cleanLine)continue;
+		if(count === 0){
+			count++
+			len = cleanLine
+			// console.log(len)
+		}else{
+			let people = cleanLine.split(/\s+/)
+			// console.log(people)
+			let best3 = cleanLine.split(/\s+/).sort((a,b)=> b-a).slice(0,3);
+			console.log(people.indexOf(best3[0])+1, people.indexOf(best3[1])+1
+									,people.indexOf(best3[2])+1)
+			
+		}
+		
+		// console.log('Hello Goorm! Your input is', line);
+		// rl.close();
+	}
+	
+	process.exit();
+})();
