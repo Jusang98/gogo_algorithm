@@ -1,0 +1,28 @@
+// Run by Node.js
+const readline = require('readline');
+
+(async () => {
+	let rl = readline.createInterface({ input: process.stdin });
+	let count =0;
+	let len = 0;
+	let result = 0;
+	for await (const line of rl) {
+		let cleanLine = line.trim();
+		if(!cleanLine)continue;
+		
+		if(count===0){
+			count++
+			len = cleanLine;
+		}else{
+			let numList = cleanLine.split(/\s+/);
+			for(let i = 0; i< len; i++){
+				result += Number(numList[i])
+			}
+			console.log(result.toString(8))
+		}
+		// console.log('Hello Goorm! Your input is', line);
+		// rl.close();
+	}
+	
+	process.exit();
+})();
